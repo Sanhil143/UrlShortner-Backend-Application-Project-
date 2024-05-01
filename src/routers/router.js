@@ -1,15 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/controller");
+const { create, getUrl } = require("../controllers/controller");
 
-
-router.post('/url/shorten', controller.create)
-
-router.get('/:urlCode', controller.getUrl)
-
+router.post("/url/shorten", create);
+router.get("/:urlCode", getUrl);
 
 router.all("/*", (req, res) => {
-    res.status(400).send({ status: false, message: "invalid HTTP request" })
-})
+  res.status(400).send({ status: false, message: "invalid HTTP request" });
+});
 
-module.exports = router
+module.exports = router;
